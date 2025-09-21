@@ -1,1 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NitroVote</title>
+    <meta name="description" content="Invite NitroVote and join the support server." />
+    <link rel="icon" href="nitrovotelogo.png" />
+    <style>
+      :root {
+        --bg: #000000;
+        --fg: #e7eef7;
+        --muted: #94a3b8;
+        --brand: #4df1ff; /* INVITE button color */
+      }
 
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--fg);
+        display: grid;
+        place-items: center;
+      }
+
+      .wrap {
+        width: min(92vw, 720px);
+        text-align: center;
+        padding: 48px 20px 32px;
+      }
+
+      .logo {
+        width: min(360px, 70vw);
+        height: auto;
+        display: block;
+        margin: 0 auto 28px;
+        filter: drop-shadow(0 8px 28px rgba(0,0,0,0.45));
+      }
+
+      .buttons {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      a.btn {
+        --ring: rgba(77, 241, 255, 0.48);
+        appearance: none;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        padding: 14px 18px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+        will-change: transform, box-shadow, filter;
+        min-width: 200px;
+      }
+
+      /* INVITE THE BOT */
+      .btn-invite {
+        background: var(--brand);
+        color: #05151a;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(77,241,255,0);
+      }
+      .btn-invite:hover { box-shadow: 0 8px 28px var(--ring); transform: translateY(-1px); }
+      .btn-invite:active { transform: translateY(0); filter: brightness(0.96); }
+
+      /* SUPPORT SERVER (neutral outline) */
+      .btn-support {
+        background: transparent;
+        color: var(--fg);
+        border-color: rgba(148,163,184,0.35);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(148,163,184,0);
+      }
+      .btn-support:hover {
+        border-color: var(--brand);
+        box-shadow: 0 8px 28px rgba(148,163,184,0.35);
+        transform: translateY(-1px);
+      }
+      .btn-support:active { transform: translateY(0); filter: brightness(0.96); }
+
+      .legal {
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .legal a {
+        color: var(--muted);
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+      }
+      .legal a:hover { color: var(--fg); }
+
+      /* Responsive: stack buttons on small screens */
+      @media (max-width: 480px) {
+        .buttons { grid-template-columns: 1fr; }
+        a.btn { min-width: 0; width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap" aria-label="NitroVote landing">
+      <img class="logo" src="./nitrovotelogo.png" alt="NitroVote logo" />
+
+      <div class="buttons" role="group" aria-label="Primary actions">
+        <a
+          class="btn btn-invite"
+          href="https://discord.com/oauth2/authorize?client_id=1418876356573270147"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Invite the NitroVote bot"
+        >INVITE THE BOT</a>
+
+        <a
+          class="btn btn-support"
+          href="https://discord.gg/pFQ7KHgz"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Join the NitroVote support server"
+        >SUPPORT SERVER</a>
+      </div>
+
+      <div class="legal">
+        <a href="privacy.html">Privacy Policy</a>
+        &nbsp;•&nbsp;
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </main>
+  </body>
+</html>
