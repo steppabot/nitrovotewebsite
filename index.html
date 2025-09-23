@@ -1,139 +1,109 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NitroVote</title>
-    <meta name="description" content="Invite NitroVote and join the support server." />
-    <link rel="icon" href="nitrovotelogo.png" />
-    <style>
-      :root {
-        --bg: #0b0f15;
-        --fg: #e7eef7;
-        --muted: #94a3b8;
-        --brand: #b819f7; /* INVITE button color */
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NitroVote</title>
+  <meta name="description" content="Vote for Veil and win Discord Nitro. NitroVote tracks votes and shows the leaderboard." />
+  <link rel="icon" href="nitrovotelogo.png" />
+  <style>
+    :root {
+      --bg:#0b0f15;
+      --fg:#e7eef7;
+      --muted:#94a3b8;
+      --brand:#b819f7;
+      --accent:#4df1ff;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 1200px at 50% 20%, #111827 0%, var(--bg) 50%);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;}
+    img{max-width:100%;height:auto;}
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-decoration:underline;}
 
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: radial-gradient(1200px 1200px at 50% 20%, #111827 0%, var(--bg) 50%);
-        color: var(--fg);
-        display: grid;
-        place-items: center;
-      }
+    .wrap{width:min(92vw,780px);margin:0 auto;padding:48px 20px;}
+    .logo{width:min(360px,70vw);display:block;margin:0 auto 28px;filter:drop-shadow(0 8px 28px rgba(0,0,0,.45));}
 
-      .wrap {
-        width: min(92vw, 720px);
-        text-align: center;
-        padding: 48px 20px 32px;
-      }
+    /* buttons */
+    .buttons{display:grid;grid-template-columns:1fr 1fr;gap:14px;justify-content:center;margin-bottom:22px;}
+    a.btn{padding:14px 18px;border-radius:12px;font-weight:700;letter-spacing:.3px;text-align:center;transition:transform .16s,box-shadow .16s;}
+    .btn-invite{background:var(--brand);color:#05151a;}
+    .btn-invite:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(77,241,255,.45);}
+    .btn-support{border:1px solid rgba(148,163,184,.35);}
+    .btn-support:hover{transform:translateY(-1px);border-color:var(--brand);box-shadow:0 8px 28px rgba(148,163,184,.35);}
 
-      .logo {
-        width: min(360px, 70vw);
-        height: auto;
-        display: block;
-        margin: 0 auto 28px;
-        filter: drop-shadow(0 8px 28px rgba(0,0,0,0.45));
-      }
+    .legal{margin-top:14px;font-size:12px;color:var(--muted);}
+    .legal a{color:var(--muted);}
+    .legal a:hover{color:var(--fg);}
 
-      .buttons {
-        display: inline-grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        justify-content: center;
-        align-items: center;
-      }
+    /* how it works */
+    h2{margin:40px 0 12px;font-size:1.8rem;text-align:center;}
+    ol.steps{counter-reset:step;list-style:none;padding:0;margin:0 auto;max-width:640px;}
+    ol.steps li{counter-increment:step;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;margin-bottom:18px;}
+    ol.steps li::before{content:counter(step);display:inline-flex;justify-content:center;align-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b0f15;font-weight:700;margin-right:10px;}
+    .step-head{font-weight:700;margin-bottom:6px;}
+    .shots{margin-top:10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
 
-      a.btn {
-        --ring: rgba(77, 241, 255, 0.48);
-        appearance: none;
-        border: 1px solid transparent;
-        border-radius: 12px;
-        padding: 14px 18px;
-        font-weight: 700;
-        letter-spacing: 0.3px;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-        will-change: transform, box-shadow, filter;
-        min-width: 200px;
-      }
+    ul.eligibility{margin:16px auto;max-width:640px;padding-left:18px;}
+    ul.eligibility li{margin-bottom:8px;}
 
-      /* INVITE THE BOT */
-      .btn-invite {
-        background: var(--brand);
-        color: #05151a;
-        text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-        box-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(77,241,255,0);
-      }
-      .btn-invite:hover { box-shadow: 0 8px 28px var(--ring); transform: translateY(-1px); }
-      .btn-invite:active { transform: translateY(0); filter: brightness(0.96); }
+    @media(max-width:480px){
+      .buttons{grid-template-columns:1fr;}
+      a.btn{width:100%;}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- top section -->
+    <img class="logo" src="nitrovotelogo.png" alt="NitroVote logo" />
 
-      /* SUPPORT SERVER (neutral outline) */
-      .btn-support {
-        background: transparent;
-        color: var(--fg);
-        border-color: rgba(148,163,184,0.35);
-        box-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(148,163,184,0);
-      }
-      .btn-support:hover {
-        border-color: var(--brand);
-        box-shadow: 0 8px 28px rgba(148,163,184,0.35);
-        transform: translateY(-1px);
-      }
-      .btn-support:active { transform: translateY(0); filter: brightness(0.96); }
+    <div class="buttons">
+      <a class="btn btn-invite" href="https://discord.com/oauth2/authorize?client_id=YOUR_NITROVOTE_ID&permissions=274877991936&scope=bot%20applications.commands" target="_blank">INVITE THE BOT</a>
+      <a class="btn btn-support" href="https://discord.gg/pFQ7KHgz" target="_blank">SUPPORT SERVER</a>
+    </div>
 
-      .legal {
-        margin-top: 18px;
-        font-size: 12px;
-        color: var(--muted);
-      }
-      .legal a {
-        color: var(--muted);
-        text-underline-offset: 3px;
-        text-decoration-thickness: 1px;
-      }
-      .legal a:hover { color: var(--fg); }
+    <div class="legal">
+      <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms of Service</a>
+    </div>
 
-      /* Responsive: stack buttons on small screens */
-      @media (max-width: 480px) {
-        .buttons { grid-template-columns: 1fr; }
-        a.btn { min-width: 0; width: 100%; }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="wrap" aria-label="NitroVote landing">
-      <img class="logo" src="./nitrovotelogo.png" alt="NitroVote logo" />
+    <!-- how it works -->
+    <h2>How It Works</h2>
+    <ol class="steps">
+      <li>
+        <div class="step-head">Invite Veil to Your Server</div>
+        Veil provides the <code>/vote</code> command needed for top.gg votes.
+        <div class="shots"><img src="images/invite-veil.png" alt="Invite Veil screenshot"></div>
+      </li>
+      <li>
+        <div class="step-head">Invite NitroVote</div>
+        NitroVote tracks votes and shows the monthly leaderboard.
+        <div class="shots"><img src="images/nitrovote-home.png" alt="NitroVote landing screenshot"></div>
+      </li>
+      <li>
+        <div class="step-head">Use <code>/vote</code> on Veil</div>
+        Run the command and click the top.gg button.
+        <div class="shots"><img src="images/veil-vote-msg.png" alt="Veil vote message screenshot"></div>
+      </li>
+      <li>
+        <div class="step-head">Vote on top.gg</div>
+        You can vote once every <strong>12 hours</strong>.
+        <div class="shots"><img src="images/topgg-vote.png" alt="top.gg vote page screenshot"></div>
+      </li>
+      <li>
+        <div class="step-head">Track Your Rank</div>
+        Use <code>/leaderboard</code> to see who’s leading.
+        <div class="shots"><img src="images/leaderboard.png" alt="NitroVote leaderboard screenshot"></div>
+      </li>
+    </ol>
 
-      <div class="buttons" role="group" aria-label="Primary actions">
-        <a
-          class="btn btn-invite"
-          href="https://discord.com/oauth2/authorize?client_id=1418876356573270147"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Invite the NitroVote bot"
-        >INVITE THE BOT</a>
-
-        <a
-          class="btn btn-support"
-          href="https://discord.gg/pFQ7KHgz"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Join the NitroVote support server"
-        >SUPPORT SERVER</a>
-      </div>
-
-      <div class="legal">
-        <a href="privacy.html">Privacy Policy</a>
-        &nbsp;•&nbsp;
-        <a href="terms.html">Terms of Service</a>
-      </div>
-    </main>
-  </body>
+    <h2>Eligibility & Prizes</h2>
+    <ul class="eligibility">
+      <li>Top <strong>3 voters</strong> each month win a Discord Nitro subscription.</li>
+      <li>You must cast at least <strong>30 votes</strong> during the month to qualify.</li>
+      <li>Ties are broken by the earliest to reach the tied total.</li>
+      <li>Votes are verified using top.gg webhooks—fraudulent votes are removed.</li>
+      <li>Winners are announced with the <code>/winners</code> command at the start of each month.</li>
+    </ul>
+  </main>
+</body>
 </html>
