@@ -31,9 +31,18 @@
     .btn-support{border:1px solid rgba(148,163,184,.35);}
     .btn-support:hover{transform:translateY(-1px);border-color:var(--brand);box-shadow:0 8px 28px rgba(148,163,184,.35);}
 
-    .legal{margin-top:14px;font-size:12px;color:var(--muted);}
-    .legal a{color:var(--muted);}
-    .legal a:hover{color:var(--fg);}
+    .legal {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;   /* ✅ center horizontally */
+    }
+    .legal a {
+      color: var(--muted);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    .legal a:hover { color: var(--fg); }
 
     /* how it works */
     h2{margin:40px 0 12px;font-size:1.8rem;text-align:center;}
