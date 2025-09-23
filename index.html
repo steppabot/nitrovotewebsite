@@ -23,6 +23,18 @@
     .wrap{width:min(92vw,780px);margin:0 auto;padding:48px 20px;}
     .logo{width:min(360px,70vw);display:block;margin:0 auto 28px;filter:drop-shadow(0 8px 28px rgba(0,0,0,.45));}
 
+    .promo {
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      color: #0b0f15;
+      font-weight: 800;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      font-size: 1.2rem;
+      letter-spacing: .5px;
+    }
+
     /* buttons */
     .buttons{display:grid;grid-template-columns:1fr 1fr;gap:14px;justify-content:center;margin-bottom:22px;}
     a.btn{padding:14px 18px;border-radius:12px;font-weight:700;letter-spacing:.3px;text-align:center;transition:transform .16s,box-shadow .16s;}
@@ -63,6 +75,7 @@
 </head>
 <body>
   <main class="wrap">
+    <div class="promo">🎉 3 Discord Nitro Winners Every Month!</div>
     <!-- top section -->
     <img class="logo" src="nitrovotelogo.png" alt="NitroVote logo" />
 
@@ -80,7 +93,8 @@
     <ol class="steps">
       <li>
         <div class="step-head">Invite Veil to Your Server</div>
-        Veil provides the <code>/vote</code> command needed for top.gg votes.
+        Veil provides the <code>/vote</code> command needed for top.gg votes.  
+        <a href="https://veilbot.dev/" target="_blank" rel="noopener">👉 Invite Veil</a>
         <div class="shots"><img src="images/invite-veil.png" alt="Invite Veil screenshot"></div>
       </li>
       <li>
